@@ -1,2 +1,2 @@
-# BasicVueProject
-A great starting point for Vue projects
+# Basic Project
+Basic Project description

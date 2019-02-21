@@ -1,0 +1,86 @@
+// Functions
+@function typeFamily($family) {
+  @return map-get($type__families, $family);
+}
+
+@function typeSize($size) {
+  $value: map-get($type__sizes, $size);
+  @return rem($value);
+}
+
+@function typeLineheight($size) {
+  $value: map-get($type__lineheights, $size);
+  @return rem($value);
+}
+
+@function rem($size) {
+  $size-rem: $size/16;
+  @return #{$size-rem}rem;
+}
+
+// Maps
+$type__sizes: ( xxs: 12, xs: 14, s: 16, m: 18, l: 20, xl: 24, xxl: 30);
+$type__lineheights: ( s: 16, m: 24, l: 32, xl: 48);
+$type__families: ( sans: (sans-serif), serif: (serif));
+// Mixins
+@mixin breakpoint($point) {
+  @if $point==xs {
+    @media (min-width: rem(16)) and (max-width: rem(736)) {
+      @content;
+    }
+  }
+  @else if $point==xs-only {
+    @media (min-width: rem(16)) and (max-width: rem(414)) {
+      @content;
+    }
+  }
+  @else if $point==xsl {
+    @media (min-width: rem(464)) {
+      @content;
+    }
+  }
+  @else if $point==s {
+    @media (min-width: rem(752)) {
+      @content;
+    }
+  }
+  @else if $point==m {
+    @media (min-width: rem(1008)) {
+      @content;
+    }
+  }
+  @else if $point==l {
+    @media (min-width: rem(1264)) {
+      @content;
+    }
+  }
+  @else if $point==ml {
+    @media (min-width: rem(1424)) {
+      @content;
+    }
+  }
+  @else if $point==xl {
+    @media (min-width: rem(1584)) {
+      @content;
+    }
+  }
+  @else if $point==xxl {
+    @media (min-width: rem(1616)) {
+      @content;
+    }
+  }
+}
+
+@mixin smooth {
+  transform: translate3d(0, 0, 0);
+  transition: all 0.375s ease-in;
+}
+
+@mixin typeFamily($family) {
+  font-family: typeFamily($family);
+}
+
+@mixin typeSize($size, $value) {
+  font-size: typeSize($size);
+  line-height: typeLineheight($value);
+}
